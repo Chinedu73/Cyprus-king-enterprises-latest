@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Order Receipt - Cyprus King Enterprises</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="receipt">
+
+
+<div class="receipt-header">
+
+
+<img src="logo.png">
+
+
+<div>
+
+<h1>
+Cyprus King Enterprises
+</h1>
+
+
+<p>
+Quality Products & Digital Solutions
+</p>
+
+
+<p>
+Phone: +2347045365298
+</p>
+
+
+<p>
+Email: chizzyperruzi@gmail.com
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<hr>
+
+
+
+<h2>
+🧾 SALES RECEIPT
+</h2>
+
+
+
+<div class="receipt-info">
+
+<p id="receipt-number"></p>
+
+<p id="receipt-date"></p>
+
+</div>
+
+
+
+<hr>
+
+
+
+
+<h3>
+Customer Information
+</h3>
+
+
+<div class="customer-box">
+
+<p id="customer-info"></p>
+
+</div>
+
+
+
+
+<h3>
+Order Details
+</h3>
+
+
+
+<div class="receipt-table">
+
+
+<div class="receipt-heading">
+
+<span>Product</span>
+
+<span>Qty</span>
+
+<span>Amount</span>
+
+</div>
+
+
+
+<div id="receipt-items">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<h2 id="receipt-total">
+
+</h2>
+
+
+
+
+<p class="thank-you">
+
+Thank you for shopping with Cyprus King Enterprises.
+
+We appreciate your business.
+
+</p>
+
+
+
+
+
+<div class="receipt-buttons">
+
+
+<button onclick="printReceipt()">
+
+🖨 Print Receipt
+
+</button>
+
+
+
+<button onclick="downloadReceipt()">
+
+⬇ Download Receipt
+
+</button>
+
+
+
+<button onclick="sendWhatsApp()">
+
+📱 WhatsApp Order
+
+</button>
+
+
+
+<a href="index.html">
+
+<button>
+
+Continue Shopping
+
+</button>
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<script src="script.js"></script>
+
+
+
+<script>
+
+
+function printReceipt(){
+
+
+let receipt =
+document.querySelector(".receipt").innerHTML;
+
+
+
+let printWindow =
+window.open(
+"",
+"",
+"width=800,height=600"
+);
+
+
+
+printWindow.document.write(`
+
+<html>
+
+<head>
+
+<title>Cyprus King Receipt</title>
+
+</head>
+
+
+<body>
+
+${receipt}
+
+</body>
+
+
+</html>
+
+`);
+
+
+
+printWindow.document.close();
+
+printWindow.print();
+
+
+}
+
+
+
+
+
+function downloadReceipt(){
+
+
+let receipt =
+document.querySelector(".receipt").innerText;
+
+
+
+let blob =
+new Blob(
+
+[receipt],
+
+{
+type:"text/plain"
+}
+
+);
+
+
+
+let link =
+document.createElement("a");
+
+
+
+link.href =
+URL.createObjectURL(blob);
+
+
+
+link.download =
+"Cyprus-King-Receipt.txt";
+
+
+
+link.click();
+
+
+}
+
+
+
+
+
+function sendWhatsApp(){
+
+
+let cart =
+JSON.parse(localStorage.getItem("cartItems")) || [];
+
+
+
+let message =
+"Hello Cyprus King Enterprises,%0A%0AOrder Details:%0A";
+
+
+
+cart.forEach(function(item){
+
+
+message +=
+
+item.name+
+" x"+
+item.quantity+
+" - $"+
+(item.price * item.quantity)+
+"%0A";
+
+
+});
+
+
+
+window.location.href =
+
+"https://wa.me/2347045365298?text="+message;
+
+
+}
+
+
+
+
+
+let cart =
+JSON.parse(localStorage.getItem("cartItems")) || [];
+
+
+
+let total = 0;
+
+
+let receiptBox =
+document.getElementById("receipt-items");
+
+
+
+cart.forEach(function(item){
+
+
+receiptBox.innerHTML += `
+
+
+<div class="receipt-row">
+
+
+<span>
+
+${item.name}
+
+</span>
+
+
+
+<span>
+
+${item.quantity}
+
+</span>
+
+
+
+<span>
+
+$${item.price * item.quantity}
+
+</span>
+
+
+</div>
+
+
+`;
+
+
+total += item.price * item.quantity;
+
+
+});
+
+
+
+document.getElementById("receipt-total").innerHTML =
+
+"Total Paid: $" + total;
+
+
+
+document.getElementById("receipt-number").innerHTML =
+
+"Receipt No: CK" + Math.floor(Math.random()*100000);
+
+
+
+document.getElementById("receipt-date").innerHTML =
+
+"Date: " + new Date().toLocaleString();
+
+
+
+document.getElementById("customer-info").innerHTML =
+
+localStorage.getItem("customerInfo") || "No customer information";
+
+
+</script>
+
+
+</body>
+
+</html>

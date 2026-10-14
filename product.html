@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Product Details - Cyprus King Enterprises</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<div class="logo">
+
+<img src="logo.png">
+
+<h2>Cyprus King</h2>
+
+</div>
+
+
+<div class="menu">
+
+<a href="index.html">
+Home
+</a>
+
+
+<a href="shop.html">
+Shop
+</a>
+
+
+<a href="cart.html" class="cart">
+
+🛒 Cart:
+<span id="cart-count">0</span>
+
+</a>
+
+</div>
+
+
+</nav>
+
+
+
+
+<section class="product-details">
+
+
+
+<div class="product-image-box">
+
+
+<img 
+id="product-image"
+alt="Product Image"
+>
+
+
+</div>
+
+
+
+
+
+<div class="product-info">
+
+
+<h1 id="product-name">
+</h1>
+
+
+
+<p id="product-category">
+</p>
+
+
+
+<p id="product-description">
+</p>
+
+
+
+
+<h2 id="product-price">
+</h2>
+
+
+
+
+<div class="quantity-box">
+
+
+<button onclick="decreaseQuantity()">
+
+-
+
+</button>
+
+
+
+<span id="quantity">
+
+1
+
+</span>
+
+
+
+<button onclick="increaseQuantity()">
+
++
+
+</button>
+
+
+</div>
+
+
+
+
+<br>
+
+
+
+<button onclick="addProductToCart()">
+
+🛒 Add To Cart
+
+</button>
+
+
+
+
+<button onclick="buyNow()">
+
+⚡ Buy Now
+
+</button>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
